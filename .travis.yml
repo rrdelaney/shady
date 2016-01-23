@@ -1,0 +1,17 @@
+language: node_js
+
+node_js:
+    - stable
+
+sudo: false
+
+script:
+    - npm test
+
+deploy:
+    provider: npm
+    email: "rrdelaney@outlook.com"
+    api_key: $NPM_TOKEN
+    on:
+        branch: master
+        condition: $(npm view shady dist-tags.latest) != $(node -p "require('./package.json').version")
