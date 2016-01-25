@@ -23,6 +23,7 @@
   "homepage": "https://github.com/rrdelaney/shady",
   "devDependencies": {
     "ava": "^0.11.0",
+    "babel-eslint": "^4.1.6",
     "standard": "^5.4.1"
   },
   "standard": {
