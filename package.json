@@ -1,6 +1,6 @@
 {
   "name": "shady",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Async event handing made easy",
   "main": "index.js",
   "scripts": {
@@ -28,5 +28,6 @@
   },
   "standard": {
     "parser": "babel-eslint"
-  }
+  },
+  "tonicExampleFilename": "example.js"
 }
