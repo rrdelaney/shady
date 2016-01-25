@@ -1,6 +1,6 @@
 {
   "name": "shady",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Async event handing made easy",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/rrdelaney/shady",
   "devDependencies": {
-    "ava": "^0.10.0",
+    "ava": "^0.11.0",
     "standard": "^5.4.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

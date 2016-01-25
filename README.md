@@ -5,16 +5,48 @@ Async event handling made easy
 ## Usage
 
 ```js
+// ES6
 var shady = require('shady')
 
-var sink = shady()
-sink.on(['a', 'b'], function() {
-  console.log('a and b are done!')
-  // ... other things
-})
+var sink = shady.wait(['a', 'b'])
+sink.then(() => console.log('done!'))
 
 setTimeout(sink.send('a'), 1000)
 setTimeout(sink.send('b'), 2000)
+```
+
+```js
+//ES7
+
+import { wait } from 'shady'
+
+async () => {
+  const sink = wait(['a', 'b'])
+
+  setTimeout(sink.send('a'), 1000)
+  setTimeout(sink.send('b'), 2000)
+
+  await sink
+  console.log('done!')
+}
+```
+
+You can get results from Shady too!
+
+```js
+// ES7
+
+import { wait } from 'shady'
+
+async () => {
+  const sink = wait(['a', 'b'])
+
+  setTimeout(() => sink.send('a')(1), 1000)
+  setTimeout(() => sink.send('b')(2), 2000)
+
+  let { a, b } = await sink
+}
+
 ```
 
 Shady makes it super easy to handle async tasks for simple things.

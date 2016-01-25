@@ -1,27 +1,39 @@
-function isSubset (A, B) {
-  return B.every(val => A.indexOf(val) !== -1)
-}
+exports.wait = function shady (events, timeout) {
+  var eventResults = {}
+  var eventCount = events.length
+  var resolveWait
+  var rejectWait
 
-module.exports = function shady () {
-  return {
-    events: [],
-    listeners: [],
-    send: function (name) {
-      return () => {
-        this.events.push(name)
-        this.listeners.forEach((listener, idx) => {
-          if (listener.on[0] === '*' || isSubset(this.events, listener.on)) {
-            listener.cb()
-            this.listeners.splice(idx, 1)
-          }
-        })
-      }
-    },
-    on: function (events, fn) {
-      this.listeners.push({
-        on: Array.isArray(events) ? events : [events],
-        cb: fn
-      })
+  var wait = new Promise((resolve, reject) => {
+    resolveWait = resolve
+    rejectWait = reject
+  })
+
+  wait.send = name => (err, res) => {
+    if (err === null || err === undefined) {
+      err = res || true
     }
+
+    var ev = events
+      .map((e, index) => ({ name: e, index: index }))
+      .filter(e => e.name === name)[0]
+
+    if (ev !== undefined) {
+      events[ev.index] = undefined
+      eventResults[ev.name] = err
+      eventCount -= 1
+    }
+
+    if (eventCount === 0) {
+      resolveWait(eventResults)
+    }
+
+    return wait
   }
+
+  if (timeout) {
+    setTimeout(() => rejectWait(new Error('Wait timeout after ' + timeout + 'ms')), timeout)
+  }
+
+  return wait
 }
