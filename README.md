@@ -1,6 +1,10 @@
-# Shady [![Build Status](https://travis-ci.org/rrdelaney/shady.svg?branch=master)](https://travis-ci.org/rrdelaney/shady)
+# Shady 
+
+[![NPM](https://nodei.co/npm/shady.png?mini=true)](https://npmjs.org/package/shady)
+[![Build Status](https://travis-ci.org/rrdelaney/shady.svg?branch=master)](https://travis-ci.org/rrdelaney/shady)
 
 Async event handling made easy
+
 
 ## Usage
 
