@@ -1,4 +1,4 @@
-# shady
+# Shady [![Build Status](https://travis-ci.org/rrdelaney/shady.svg?branch=master)](https://travis-ci.org/rrdelaney/shady)
 
 Async event handling made easy
 
